@@ -1,0 +1,47 @@
+{{- range .Values.deployments }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .name }}
+  namespace: {{ $.Values.deployment.namespace }}
+  labels:
+    app: {{ .name }}
+    site: {{ $.Values.deployment.labels.site }}
+    repository: {{ $.Values.deployment.labels.repository }}
+    app.kubernetes.io/name: {{ $.Chart.Name }}
+    app.kubernetes.io/instance: {{ $.Chart.Name }}
+    helm.sh/chart: "{{ $.Chart.Name }}-{{ $.Chart.Version }}"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  strategy:
+    type: "Recreate"
+  selector:
+    matchLabels:
+      app: {{ .name }}
+      site: {{ $.Values.deployment.labels.site }}
+      repository: {{ $.Values.deployment.labels.repository }}
+  template:
+    metadata:
+      labels:
+        app: {{ .name }}
+        site: {{ $.Values.deployment.labels.site }}
+        repository: {{ $.Values.deployment.labels.repository }}
+    spec:
+      containers:
+        - name: {{ .name }}
+          image: nginx:latest
+          imagePullPolicy: Always
+          env:
+            - name: PACKAGING_ID
+              value: {{ .env.PACKAGING_ID | quote }}
+            - name: PLANT_NAME
+              value: {{ .env.PLANT_NAME }}
+            - name: LINE_NAME
+              value: {{ .env.LINE_NAME }}
+            - name: LOGLEVEL
+              value: "DEBUG"
+            - name: USE_POSTGRES_CONFIG_PROVIDER
+              value: "1"
+---
+{{- end }}

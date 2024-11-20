@@ -1,0 +1,24 @@
+{{- range .Values.deployments }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .name }}
+  namespace: {{ .Values.deployment.namespace }}
+  labels:
+    app: {{ .name }}
+    site: {{ .Values.deployment.labels.site }}
+    repository: {{ .Values.deployment.labels.repository }}
+  annotations:
+    metallb.universe.tf/address-pool: general-addresspool
+    metallb.universe.tf/loadBalancerIPs: {{ .annotations.metallb.universe.tf.loadBalancerIPs }}
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8000
+  selector:
+    app: {{ .name }}
+    site: {{ .Values.deployment.labels.site }}
+    repository: {{ .Values.deployment.labels.repository }}
+---
+{{- end }}

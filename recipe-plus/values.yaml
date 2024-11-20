@@ -1,0 +1,43 @@
+# GENERAL
+deployment:
+  namespace: default
+  labels:
+    site: "clm2"
+    repository: "bitbucket-clarebout-factoryplus-RecipePlus"
+# COMMENT
+deployments:
+  - name: "vp-pack-recipeplus-e00-em-21"
+    annotations:
+      metallb.universe.tf/loadBalancerIPs: "10.92.19.164"
+    env:
+      PACKAGING_ID: "521"
+      PLANT_NAME: "M2"
+      LINE_NAME: "E00_EM_21"
+  - name: "vp-pack-recipeplus-e00-em-90"
+    annotations:
+      metallb.universe.tf/loadBalancerIPs: "10.92.19.174"
+    env:
+      PACKAGING_ID: "000"
+      PLANT_NAME: "M2"
+      LINE_NAME: "E00_EM_90"
+  - name: "vp-pack-recipeplus-e01-em-01"
+    annotations:
+      metallb.universe.tf/loadBalancerIPs: "10.92.19.165"
+    env:
+      PACKAGING_ID: "501"
+      PLANT_NAME: "M2"
+      LINE_NAME: "E01_EM_01"
+  - name: "vp-pack-recipeplus-e01-em-02"
+    annotations:
+      metallb.universe.tf/loadBalancerIPs: "10.92.19.166"
+    env:
+      PACKAGING_ID: "502"
+      PLANT_NAME: "M2"
+      LINE_NAME: "E01_EM_02"
+  - name: "vp-pack-recipeplus-e01-em-03"
+    annotations:
+      metallb.universe.tf/loadBalancerIPs: "10.92.19.161"
+    env:
+      PACKAGING_ID: "503"
+      PLANT_NAME: "M2"
+      LINE_NAME: "E01_EM_03"
