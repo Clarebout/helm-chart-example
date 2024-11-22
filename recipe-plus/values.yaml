@@ -4,7 +4,7 @@ deployment:
   labels:
     site: "clm2"
     repository: "bitbucket-clarebout-factoryplus-RecipePlus"
-    image: "20241122.26"
+  tag: "20241122.26"
 
 # COMMENT
 deployments:

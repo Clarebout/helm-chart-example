@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
         - name: {{ .name }}
-          image: nginx:{{ $.Values.deployment.image }}
+          image: nginx:{{ $.Values.deployment.tag }}
           imagePullPolicy: Always
           env:
             - name: PACKAGING_ID
