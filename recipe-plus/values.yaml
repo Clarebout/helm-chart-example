@@ -4,7 +4,7 @@ deployment:
   labels:
     site: "clm2"
     repository: "bitbucket-clarebout-factoryplus-RecipePlus"
-  tag: "20241122.26"
+  tag: "1.26.2"
 
 # COMMENT
 deployments:
