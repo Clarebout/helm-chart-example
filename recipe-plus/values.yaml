@@ -4,6 +4,8 @@ deployment:
   labels:
     site: "clm2"
     repository: "bitbucket-clarebout-factoryplus-RecipePlus"
+    image: "20241122.26"
+
 # COMMENT
 deployments:
   - name: "vp-pack-recipeplus-e00-em-21"
@@ -41,3 +43,10 @@ deployments:
       PACKAGING_ID: "503"
       PLANT_NAME: "M2"
       LINE_NAME: "E01_EM_03"
+  - name: "vp-pack-recipeplus-e01-em-04"
+    annotations:
+      metallb.universe.tf/loadBalancerIPs: "10.92.19.161"
+    env:
+      PACKAGING_ID: "504"
+      PLANT_NAME: "M2"
+      LINE_NAME: "E01_EM_04"
